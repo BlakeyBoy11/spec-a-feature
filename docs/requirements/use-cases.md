@@ -1370,6 +1370,7 @@ No two teams can have the same name. The team name must be unique. The course ad
 Submission status:
 - Submission status applies only to a student assigned to a team; a student who is not cannot submit either artifact (BR-team-assignment-required) and is never nudged.
 - A student's submission status is tracked separately for each artifact.
+- The weeks are determined by the system from the current date; the instructor does not choose them. The weekly activity report in question is the current week's. The peer evaluation in question is for the previous week (the evaluated week), whose submission window is the current week (BR-evaluation-submission-window).
 - Weekly activity report: a weekly activity report is due only for a week that is one of the course section's active weeks (BR-active-weeks). A student has submitted it if at least one activity exists for her in that week. A student who deletes every activity she entered for a week has not submitted that week's weekly activity report.
 - Peer evaluation: a student has submitted it if a peer evaluation from her exists for the evaluated week whose submission window is open (BR-evaluation-submission-window). If that week is not one of the course section's active weeks, no peer evaluation is due. A peer evaluation cannot be deleted, only edited while its window is open.
 
