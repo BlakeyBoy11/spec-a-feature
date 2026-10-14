@@ -1344,8 +1344,8 @@ No two teams can have the same name. The team name must be unique. The course ad
 - **2b. A student of the course section is not assigned to a team:**
   - 2b1. The system displays her separately as not assigned to a team, and does not include her among the students to be nudged (BR-team-assignment-required).
   - 2b2. Returns to step 3.
-- **2c. The peer evaluation submission window has closed:**
-  - 2c1. The system does not list any student as not having submitted that peer evaluation, because a missed peer evaluation cannot be made up (BR-evaluation-submission-window).
+- **2c. The evaluated week is not one of the course section's active weeks:**
+  - 2c1. The system does not list any student as not having submitted a peer evaluation, because none is due (BR-active-weeks).
   - 2c2. Returns to step 3.
 - **2d. The current week is not one of the course section's active weeks:**
   - 2d1. The system does not list any student as not having submitted a weekly activity report for that week (BR-active-weeks).
