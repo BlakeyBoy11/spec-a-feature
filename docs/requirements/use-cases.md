@@ -7,7 +7,7 @@
 # **Revision History**
 
 | Date | Version | Description | Author |
-| ----- | ----- | ----- | ----- |
+| 01/oct/26 | 1.0 | Initial update | Blake |
 | \<dd/mmm/yy\> | \<x.x\> | \<details\> | \<name\> |
 |  |  |  |  |
 |  |  |  |  |
@@ -31,7 +31,7 @@ The headings below describe each field of the use-case template (Wiegers & Beatt
 *Give each use case a unique integer sequence number identifier. State a concise name for the use case that indicates the value the use case would provide to some user. Begin with an action verb, followed by an object.*
 
 ***Author and Date Created***
-*Enter the name of the person who initially wrote this use case and the date it was written.*
+*Blake Boykin, 10/1/2026
 
 ***Primary and Secondary Actors***
 *An actor is a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. Different actors often correspond to different user classes, or roles, identified from the customer community that will use the product. Name the primary actor that will be initiating this use case and any other secondary actors who will participate in completing execution of the use case.*
@@ -1306,6 +1306,81 @@ No two teams can have the same name. The team name must be unique. The course ad
 
 **Assumptions:** AS-one-section-per-student (an invitation is keyed by the invited address alone, which is unambiguous only because a student is invited to one course section)
 **Open Issues:**
+
+### **UC-STU-nudge-non-submitters: The instructor nudges the students who have not submitted**
+
+**UC ID and Name:** UC-STU-nudge-non-submitters: Nudge the students who have not submitted
+**Created By:** Blake Boykin
+**Date Created:**
+**Primary Actor:** instructor
+**Secondary Actors:** the students being nudged; the email service (CI-email-notifications)
+**Trigger:** The instructor indicates to nudge the students of a course section who have not submitted.
+**Description:** The instructor wants to see which students of a course section have not submitted a weekly activity report or peer evaluation that is due, and nudge only those students, so that she can follow up with them without reminding the students who have already submitted.
+
+**Preconditions:**
+- PRE-1. The instructor is logged into the system.
+- PRE-2. The instructor is assigned to the course section (BR-section-scoped-access).
+
+**Postconditions:**
+- POST-1. The instructor is shown, for each artifact, the students of the course section who have not submitted it.
+- POST-2. Each student on the list is sent a nudge listing only the artifacts she has not submitted.
+- POST-3. The system records each nudge sent: the instructor, the student, the artifacts listed, and the time sent.
+- POST-4. The instructor is informed how many nudges were sent.
+
+**Main Success Scenario:**
+1. The instructor indicates to nudge the students of a course section who have not submitted.
+2. The system displays, for each artifact due, the students of the course section who have not submitted it, as defined in "Submission status" in the Associated Information of this use case, marking each student already nudged about that artifact for that week and when.
+3. The system displays how many students have not submitted each artifact.
+4. The instructor confirms to nudge the students on the list.
+5. The system sends each student on the list a nudge listing only the artifacts she has not submitted.
+6. The system records each nudge sent (per POST-3).
+7. The system informs the instructor how many nudges were sent.
+8. Use case ends.
+
+**Extensions:**
+- **2a. No student has an artifact due that she has not submitted:**
+  - 2a1. The system informs the instructor that no student has an outstanding submission.
+  - 2a2. Use case ends.
+- **2b. A student of the course section is not assigned to a team:**
+  - 2b1. The system displays her separately as not assigned to a team, and does not include her among the students to be nudged (BR-team-assignment-required).
+  - 2b2. Returns to step 3.
+- **2c. The peer evaluation submission window has closed:**
+  - 2c1. The system does not list any student as not having submitted that peer evaluation, because a missed peer evaluation cannot be made up (BR-evaluation-submission-window).
+  - 2c2. Returns to step 3.
+- **2d. The current week is not one of the course section's active weeks:**
+  - 2d1. The system does not list any student as not having submitted a weekly activity report for that week (BR-active-weeks).
+  - 2d2. Returns to step 3.
+- **4a. The instructor chooses not to nudge:**
+  - 4a1. The system sends no nudge.
+  - 4a2. Use case ends.
+- **5a. A student on the list has already been nudged about an artifact for that week (BR-nudge-once-per-artifact):**
+  - 5a1. The system does not nudge her about that artifact again, and nudges her only about any other artifact she has not submitted and has not been nudged about.
+  - 5a2. Continues step 5 with the next student.
+- **5b. The email service rejects a student's address:**
+  - 5b1. The system does not record a nudge for that student, and continues sending the remaining nudges.
+  - 5b2. The system informs the instructor which students could not be nudged and why.
+  - 5b3. Continues step 5 with the next student.
+
+**Priority:** Medium
+**Frequency of Use:** Approximately 3 instructors per course section, 1-2 usages per week each.
+**Business Rules:** BR-section-scoped-access (the instructor sees and nudges only the students of a course section she is assigned to), BR-team-assignment-required (a student not assigned to a team cannot submit and is not nudged), BR-active-weeks, BR-evaluation-submission-window, BR-nudge-once-per-artifact
+
+**Associated Information:**
+
+Submission status:
+- Submission status applies only to a student assigned to a team; a student who is not cannot submit either artifact (BR-team-assignment-required) and is never nudged.
+- A student's submission status is tracked separately for each artifact.
+- Weekly activity report: a weekly activity report is due only for a week that is one of the course section's active weeks (BR-active-weeks). A student has submitted it if at least one activity exists for her in that week. A student who deletes every activity she entered for a week has not submitted that week's weekly activity report.
+- Peer evaluation: a student has submitted it if a peer evaluation from her exists for the evaluated week whose submission window is open (BR-evaluation-submission-window). If that week is not one of the course section's active weeks, no peer evaluation is due. A peer evaluation cannot be deleted, only edited while its window is open.
+
+Nudge:
+- A nudge lists only the artifacts that student has not submitted.
+- Each nudge is sent to one student individually; no nudge reveals which other students have not submitted (CO-ferpa).
+- The scheduled weekly reminder (FR-NOT-weekly-reminder) is separate from this use case; a nudge does not change whether a student receives it.
+
+**Assumptions:**
+**Open Issues:**
+- BR-active-weeks permits a weekly activity report for any week, but UC-WAR-manage-activities step 2 restricts the student to an active week. This use case nudges only for active weeks, which is consistent with either reading.
 
 ### **UC-STU-find-students: The course admin/instructor finds students**
 
