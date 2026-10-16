@@ -1369,6 +1369,7 @@ No two teams can have the same name. The team name must be unique. The course ad
 
 Submission status:
 - Submission status applies only to a student assigned to a team; a student who is not cannot submit either artifact (BR-team-assignment-required) and is never nudged.
+- A deactivated student (UC-STU-deactivate-student, BR-student-lifecycle) has no submission status: she is neither listed nor nudged.
 - A student's submission status is tracked separately for each artifact.
 - The weeks are determined by the system from the current date; the instructor does not choose them. The weekly activity report in question is the current week's. The peer evaluation in question is for the previous week (the evaluated week), whose submission window is the current week (BR-evaluation-submission-window).
 - An artifact is due for the whole of its week; the course section's configured due day and time govern only the scheduled reminder (FR-NOT-weekly-reminder), not this listing.
