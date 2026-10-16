@@ -1377,6 +1377,7 @@ Submission status:
 - Peer evaluation: a student has submitted it only if, for the evaluated week, a peer evaluation from her exists for every current member of her team, herself included (UC-EVA-submit-evaluation); a student who has evaluated only some of them has not submitted it. If that week is not one of the course section's active weeks, no peer evaluation is due. A peer evaluation cannot be deleted, only edited while its window is open.
 
 Nudge:
+- A nudge is one email to one student, listing one or more artifacts she has not submitted. A student is "nudged about" an artifact when a nudge lists it; BR-nudge-once-per-artifact limits which artifacts a nudge may list, not how many nudges she receives. The count in step 7 and POST-4 is the number of students emailed.
 - A nudge lists only the artifacts that student has not submitted.
 - Each nudge is sent to one student individually; no nudge reveals which other students have not submitted (CO-ferpa).
 - The scheduled weekly reminder (FR-NOT-weekly-reminder) is separate from this use case; a nudge does not change whether a student receives it.
