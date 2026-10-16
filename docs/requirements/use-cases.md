@@ -1373,7 +1373,7 @@ Submission status:
 - The weeks are determined by the system from the current date; the instructor does not choose them. The weekly activity report in question is the current week's. The peer evaluation in question is for the previous week (the evaluated week), whose submission window is the current week (BR-evaluation-submission-window).
 - An artifact is due for the whole of its week; the course section's configured due day and time govern only the scheduled reminder (FR-NOT-weekly-reminder), not this listing.
 - Weekly activity report: a weekly activity report is due only for a week that is one of the course section's active weeks (BR-active-weeks). A student has submitted it if at least one activity exists for her in that week. A student who deletes every activity she entered for a week has not submitted that week's weekly activity report.
-- Peer evaluation: a student has submitted it if a peer evaluation from her exists for the evaluated week whose submission window is open (BR-evaluation-submission-window). If that week is not one of the course section's active weeks, no peer evaluation is due. A peer evaluation cannot be deleted, only edited while its window is open.
+- Peer evaluation: a student has submitted it only if, for the evaluated week, a peer evaluation from her exists for every current member of her team, herself included (UC-EVA-submit-evaluation); a student who has evaluated only some of them has not submitted it. If that week is not one of the course section's active weeks, no peer evaluation is due. A peer evaluation cannot be deleted, only edited while its window is open.
 
 Nudge:
 - A nudge lists only the artifacts that student has not submitted.
